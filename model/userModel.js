@@ -1,0 +1,51 @@
+const mongoose = require("mongoose");
+
+const UserSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: true,
+    },
+    email: {
+        type: String,
+        required: true,
+    },
+    phone: {
+        type: Number,
+        required: true,
+    },
+    password: {
+        type: String,
+        required: true,
+    },
+    forget: {
+        type: String,
+        required: true,
+    },
+    image: {
+        type: String,
+        required: true,
+    },
+    isAdmin: {
+        type: String,
+        enum: ["admin", "user", "employee"],
+        default: "user",
+    },
+    isVerified:{
+        type:Boolean,
+        default:false,
+    },
+    token:{
+        type:String,
+        required:true
+    },
+    expiresAt:{
+        type:Date,
+        default:Date.now(),
+        index:{
+            expires:864000
+        }
+    }
+});
+
+const UserModel = mongoose.model("user", UserSchema);
+module.exports = UserModel;

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%-include("layouts/head.ejs")%>
+</head>
+    <%-include("layouts/navbar.ejs")%>
+    
+
+    <div class='container'>
+        <div class='row mt-5'>
+            <div class='col-6 mx-auto mb-5'>
+
+                <form action="/createuser" method="post" enctype="multipart/form-data">
+                    
+                    <div class='card shadow p-3'>
+                        <div class='card-header' style="background-color:#039EE3">
+                            <h4 style="text-align: center; margin-top: 10px; color: #ff0000;"><%=message%></h4>
+                            <h3 class='text-center' style="color:#FFFFFF">Registration</h3>
+                        </div>
+                        <div class='card-body'>
+                            <div class='row'>
+                                
+                                <div class='col-12'>
+                                    <div class='form-group'>
+                                        <label class='form-label'><strong>Name</strong> <span class='err-msg'>*</span></label>
+                                        <input type="text" name='name' class='form-control' pattern=".{3,}" title="Three or more characters" required />
+                                    </div>
+                                </div>
+                                <div class='col-12'>
+                                    <label class='form-label'><strong>Email</strong> <span class='err-msg'>*</span></label>
+                                    <input type="email" name='email' class='form-control' required />
+                                </div>
+                                <div class='col-12'>
+                                    <label class='form-label'><strong>Password</strong> <span class='err-msg'>*</span></label>
+                                    <input type="password" name='password' class='form-control' required />
+                                </div>
+                                <div class='col-12'>
+                                    <label class='form-label'><strong>Phone</strong><span class='err-msg'>*</span></label>
+                                    <input type="tel" name='phone' class='form-control' pattern="[0-9]{10}" title="Ten characters" required />
+                                </div>
+                                <div class='col-12'>
+                                    <div class='form-group'>
+                                        <label class='form-label'><strong>Image</strong></label>
+                                        <input type="file" name="image" class='form-control' accept="image/*" required onchange="previewImage(event)" />
+                                        <img id="image-preview" src="#" alt="Preview" style="display: none; width: 80px; height: 80px;" />
+                                    </div>
+                                </div>
+                                
+                                <script>
+                                    function previewImage(event) {
+                                        var input = event.target;
+                                        var preview = document.getElementById('image-preview');
+                                
+                                        if (input.files && input.files[0]) {
+                                            var reader = new FileReader();
+                                
+                                            reader.onload = function (e) {
+                                                preview.src = e.target.result;
+                                                preview.style.display = 'block';
+                                            };
+                                
+                                            reader.readAsDataURL(input.files[0]);
+                                        } else {
+                                            preview.style.display = 'none';
+                                        }
+                                    }
+                                </script>
+                                
+                                <div class='col-12'>
+                                    <label class='form-label'><strong>Answer</strong><span class='err-msg'>*</span></label>
+                                    <input type="text" name='forget' class='form-control' required />
+                                </div>
+
+                                <div class='col-12'>
+                                    <label class='form-label'><strong>Role</strong><span class='err-msg'>*</span></label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="employee" name="isAdmin" value="employee">
+                                        <label class="form-check-label" for="employee">
+                                            Employee
+                                        </label>
+                                    </div>
+                                </div>                                
+                                
+
+                            </div>
+                        </div>
+                        <div class='card-footer' style="background-color:#000000">
+                            <button class='btn btn-info btn-sm' style="background-color:#039EE3">Register</button>
+                            
+                                <p class='mt-2' style="color:#FFFFFF">
+                                    Already have an account? <a href="/login" style="color:#FFFFFF">Login here</a>
+                                </p>
+                            
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class='row mt-5'></div>
+        </div>
+    </div>
+
+
+    <%-include("layouts/footer.ejs")%>
+    <%-include("layouts/foot.ejs")%>
+</body>
+</html>
