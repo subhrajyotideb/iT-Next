@@ -1,11 +1,16 @@
 const Route = require("express").Router()
 const UIcontroller = require("../controller/UIcontroller")
+const {UserAuthVerify,EmployeeAuthVerify} = require("../middleware/AuthVerify")
 const UserIMG = require("../utility/userIMG")
 
 
 // Test
 Route.get("/test",UIcontroller.Test)
 
+
+// User and Employee Dashboard
+Route.get("/userdash",UserAuthVerify,UIcontroller.DashUser)
+Route.get("/empdash",EmployeeAuthVerify,UIcontroller.DashEmp)
 
 // Login, Logout, Register and email verification
 Route.get("/register",UIcontroller.Register)

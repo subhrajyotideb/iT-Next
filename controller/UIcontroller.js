@@ -15,6 +15,36 @@ exports.Test=(req,res)=>{
     res.render("test")
 }
 
+// Dashboard User
+exports.DashUser = async (req,res)=>{
+    try {
+        const result = await UserModel.findById(req.user._id)
+
+        return res.render("dashUser",{
+            data:result,
+            message:req.flash("message")
+        })
+    }
+    catch (error) {
+        return res.redirect("/login")
+    }
+}
+
+// Dashboard Employee
+exports.DashEmp = async (req,res)=>{
+    try {
+        const result = await UserModel.findById(req.emp._id)
+
+        return res.render("dashEmp",{
+            data:result,
+            message:req.flash("message")
+        })
+    }
+    catch (error) {
+        return res.redirect("/login")
+    }
+}
+
 // Home Page
 exports.Index=(req,res)=>{
     res.render("index")
@@ -94,7 +124,12 @@ exports.CreateUser = async(req,res)=>{
                         </a>
                         
                         <p style="font-size: 16px; color: #333;">Welcome to our community, and we're excited to have you on board!</p>
-                        <p style="font-size: 16px; color: #333;">Best regards,<br>[it-Next]</p>
+                        <div class="logo-text" style="font-size: 16px; color: #333; text-align: center;">
+                        Best regards,<br>
+                        <img src="https://res.cloudinary.com/ddunssnvi/image/upload/v1705143751/f2vqwvblz9tsmbxhiusq.png" alt="Logo" style="width: 20px; height: 20px;">
+                        </div>
+
+
                     </div>
                 `,
             };
@@ -186,7 +221,8 @@ exports.Login = async (req, res) => {
             });
 
             res.cookie("UserToken", token);
-            return res.redirect("/");
+            req.flash("message",`Welcome ${user.name}`)
+            return res.redirect("/userdash");
 
         } else if (passwordMatch && (user.isAdmin === "employee")) {
             const token = await CreateUserEmployeeToken({
@@ -198,7 +234,8 @@ exports.Login = async (req, res) => {
             });
 
             res.cookie("EmployeeToken", token);
-            return res.redirect("/about");
+            req.flash("message",`Welcome ${user.name}`)
+            return res.redirect("/empdash");
         } else {
             req.flash("message", "Incorrect Email or Password");
             return res.redirect("/login");

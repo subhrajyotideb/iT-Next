@@ -57,7 +57,7 @@ const EmployeeAuthVerify = async (req,res,next)=>{
 
     try {
         const decode = await JWT.verify(EmployeeToken, process.env.JWT_SECRET_KEY)
-        req.employee = decode
+        req.emp = decode
         return next()
     }
     catch (error) {

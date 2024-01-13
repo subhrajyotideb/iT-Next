@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>Admin Login</title>
   <link rel="stylesheet" href="/admin/assets/css1/style.css">
-  <link href="/admin/assets/img/favicon.png" rel="icon">
+  <link href="/admin/assets/img/fevicon.png" rel="icon">
   <link href="/admin/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
 </head>
@@ -19,13 +19,21 @@
 </head>
 <body>
 	<div class="main">  	
-		<input type="checkbox" id="chk" aria-hidden="true">
+		
 
 			<div class="login">
-				<form action="/admin/login" method="post">
+				<form action="/admin/login" method="post" style="color: black;">
+
+					<div style="text-align: center; margin: 30px;">
+						
+						  <img src="/images/logos/it_logo_white.png" alt="logo" style="width: 100px; height: auto;" />
+						
+					  </div>
+					  
+					  
 					<label>Admin Login</label>
 
-					<h4 style="text-align: center; margin-top: 10px; color: rgb(218, 228, 131);"><%=message%> </h4>
+					<h4 style="text-align: center; margin-top: 10px; color: rgb(212, 48, 48);"><%=message%> </h4>
 
 					<input type="email" name="email" placeholder="Email" required="">
 					<input type="password" name="password" placeholder="Password" required="">
