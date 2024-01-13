@@ -126,7 +126,7 @@ exports.CreateUser = async(req,res)=>{
                         <p style="font-size: 16px; color: #333;">Welcome to our community, and we're excited to have you on board!</p>
                         <div class="logo-text" style="font-size: 16px; color: #333; text-align: center;">
                         Best regards,<br>
-                        <img src="https://res.cloudinary.com/ddunssnvi/image/upload/v1705143751/f2vqwvblz9tsmbxhiusq.png" alt="Logo" style="width: 20px; height: 20px;">
+                        <img src="https://res.cloudinary.com/ddunssnvi/image/upload/v1705143751/f2vqwvblz9tsmbxhiusq.png" alt="Logo" style="width: 40px; height: 40px;">
                         </div>
 
 
