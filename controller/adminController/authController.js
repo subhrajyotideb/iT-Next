@@ -1,8 +1,9 @@
-const UserModel = require("../model/userModel")
+const UserModel = require("../../model/userModel")
+
 
 
 const bcrypt = require("bcryptjs")
-const {CreateAdminToken} = require("../middleware/AuthHelper")
+const {CreateAdminToken} = require("../../middleware/AuthHelper")
 
 
 // Admin Login Page
@@ -10,11 +11,6 @@ exports.LoginPage = (req,res)=>{
     res.render("admin/login",{
         message:req.flash("message")
     })
-}
-
-// Admin Dashboard
-exports.Dashboard = (req,res)=>{
-    res.render("admin/dashboard")
 }
 
 // Admin Login

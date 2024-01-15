@@ -39,6 +39,9 @@ app.use(express.static(path.join(__dirname,"public")))
 // User Image Folder
 app.use("/userUpload",express.static(path.join(__dirname,"userUpload")))
 
+// Service Image Folder
+app.use("/serviceUpload",express.static(path.join(__dirname,"serviceUpload")))
+
 // admin routes
 const AdminRoutes = require("./routes/AdminRoutes")
 app.use("/admin",AdminRoutes)

@@ -19,7 +19,7 @@
     <div class="pagetitle">
         <h1>Doctors</h1>
         
-            <a href="/admin/adddoctor" class="btn btn-success">Add Doctor</a>
+            <a href="/admin/addemp" class="btn btn-success">Add Employee</a>
         
     </div>
 
@@ -48,9 +48,9 @@
                     </thead>
                     <tbody>
                         <% for (let datas of data) { %>
-                            <% for (let department of datas.department_details) { %>
+                            <% for (let service of datas.service_details) { %>
                                 <tr>
-                                    <td><%= department.departmentName %></td>
+                                    <td><%= service.departmentName %></td>
                                     <td><%= datas.name %></td>
                                     <td><%= datas.date.toDateString() %></td>
                                     <td><%= datas.aperture_time ? new Date(`1970-01-01T${datas.aperture_time}`).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '' %></td>

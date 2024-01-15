@@ -1,83 +1,53 @@
-const UserModel = require("../model/userModel")
+const UserModel = require("../../model/userModel")
+const ServiceModel = require("../../model/serviceModel")
 
 
 
-
-const {SecurePassword,CreateUserEmployeeToken} = require("../middleware/AuthHelper")
-const crypto = require("crypto");
+const {SecurePassword,CreateUserEmployeeToken} = require("../../middleware/AuthHelper")
+const crypto = require("crypto")
 const nodemailer = require("nodemailer")
 const bcrypt = require("bcryptjs")
 
 
 
-// Test
-exports.Test=(req,res)=>{
-    res.render("test")
-}
 
-// Dashboard User
-exports.DashUser = async (req,res)=>{
-    try {
-        const result = await UserModel.findById(req.user._id)
 
-        return res.render("dashUser",{
-            data:result,
-            message:req.flash("message")
-        })
-    }
-    catch (error) {
-        return res.redirect("/login")
-    }
-}
 
-// Dashboard Employee
-exports.DashEmp = async (req,res)=>{
-    try {
-        const result = await UserModel.findById(req.emp._id)
-
-        return res.render("dashEmp",{
-            data:result,
-            message:req.flash("message")
-        })
-    }
-    catch (error) {
-        return res.redirect("/login")
-    }
-}
-
-// Home Page
-exports.Index=(req,res)=>{
-    res.render("index")
-}
-
-// About Page
-exports.About=(req,res)=>{
-    res.render("about")
-}
 
 // Register page
-exports.Register=(req,res)=>{
-    res.render("register",{message:req.flash("message")})
+exports.Register = async (req,res)=>{
+    try {
+
+        const result = await ServiceModel.find()
+
+        res.render("register",{
+            data:result,
+            message:req.flash("message")
+        })
+    }
+    catch (error) {
+        console.log(error);
+    }
 }
 
 // Create User and Employee
 exports.CreateUser = async(req,res)=>{
     try {
-        const {name,email,phone,password,forget,isAdmin} = req.body
+        const {name,email,phone,password,forget,isAdmin,isEmployee,apply_for,admin_service_id} = req.body
         const image = req.file.path
         const HashPass = await SecurePassword(password)
 
-        const exist = await UserModel.findOne({
-            $or:[
-                {email:email},
-                {phone:phone}
-            ]
-        })
+        // const exist = await UserModel.findOne({
+        //     $or:[
+        //         {email:email},
+        //         {phone:phone}
+        //     ]
+        // })
 
-        if (exist) {
-            req.flash("message","Email or phone already exists. Please use a different email or phone.")
-            return res.redirect("/register")
-        }
+        // if (exist) {
+        //     req.flash("message","Email or phone already exists. Please use a different email or phone.")
+        //     return res.redirect("/register")
+        // }
 
         const NewUser = await new UserModel({
             name:name,
@@ -87,7 +57,10 @@ exports.CreateUser = async(req,res)=>{
             forget:forget,
             isAdmin:isAdmin,
             image:image,
-            token: crypto.randomBytes(16).toString('hex')
+            isEmployee:isEmployee,
+            apply_for:apply_for,
+            admin_service_id:admin_service_id,
+            token : crypto.randomBytes(16).toString('hex')
         })
 
         const result = await NewUser.save();
@@ -180,7 +153,6 @@ exports.Confirmation = async (req, res) => {
         console.log("Error in confirmation:", error);
     }
 };
-
 
 // Login page
 exports.LoginPage=(req,res)=>{

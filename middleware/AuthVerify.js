@@ -30,6 +30,7 @@ const UserAuthVerify = async (req,res,next)=>{
 
     if (!UserToken) {
         console.log("token is required");
+        req.flash("message","You have to login first")
         return res.redirect("/login")
     }
 
@@ -40,6 +41,7 @@ const UserAuthVerify = async (req,res,next)=>{
     }
     catch (error) {
         console.log(`error in UserAuthVerify ${error}`);
+        req.flash("message","Contact with us!")
         return res.redirect("/login")
     }
 }
@@ -52,6 +54,7 @@ const EmployeeAuthVerify = async (req,res,next)=>{
 
     if (!EmployeeToken) {
         console.log("token is required");
+        req.flash("message","You have to login first")
         return res.redirect("/login")
     }
 
@@ -62,6 +65,7 @@ const EmployeeAuthVerify = async (req,res,next)=>{
     }
     catch (error) {
         console.log(`error in EmployeeAuthVerify ${error}`);
+        req.flash("message","Contact with us!")
         return res.redirect("/login")
     }
 }

@@ -1,27 +1,42 @@
 const Route = require("express").Router()
-const UIcontroller = require("../controller/UIcontroller")
+const TestController = require("../controller/TestPageController")
+const UserDashController = require("../controller/uiController/userDashController")
+const EmpDashController = require("../controller/uiController/empDashController")
+const AuthController = require("../controller/uiController/authController")
+const IndexController = require("../controller/uiController/indexController")
+const AboutController = require("../controller/uiController/aboutController")
+
 const {UserAuthVerify,EmployeeAuthVerify} = require("../middleware/AuthVerify")
 const UserIMG = require("../utility/userIMG")
 
 
-// Test
-Route.get("/test",UIcontroller.Test)
 
 
-// User and Employee Dashboard
-Route.get("/userdash",UserAuthVerify,UIcontroller.DashUser)
-Route.get("/empdash",EmployeeAuthVerify,UIcontroller.DashEmp)
+// Test Page For Design Purpose
+Route.get("/test",TestController.Test)
+
+
+
+
+// Index Page
+Route.get("/",IndexController.Index)
+
+// User Dashboard
+Route.get("/userdash",UserAuthVerify,UserDashController.DashUser)
+
+// Employee Dashboard
+Route.get("/empdash",EmployeeAuthVerify,EmpDashController.DashEmp)
 
 // Login, Logout, Register and email verification
-Route.get("/register",UIcontroller.Register)
-Route.get("/login",UIcontroller.LoginPage)
-Route.post("/createlogin",UIcontroller.Login)
-Route.post("/createuser",UserIMG,UIcontroller.CreateUser)
-Route.get("/confirmation/:token",UIcontroller.Confirmation)
-Route.get("/logoutuser",UIcontroller.LogoutUser)
-Route.get("/logoutemployee",UIcontroller.LogoutEmployee)
+Route.get("/register",AuthController.Register)
+Route.get("/login",AuthController.LoginPage)
+Route.post("/createlogin",AuthController.Login)
+Route.post("/createuser",UserIMG,AuthController.CreateUser)
+Route.get("/confirmation/:token",AuthController.Confirmation)
+Route.get("/logoutuser",AuthController.LogoutUser)
+Route.get("/logoutemployee",AuthController.LogoutEmployee)
 
-Route.get("/",UIcontroller.Index)
-Route.get("/about",UIcontroller.About)
+// About Page
+Route.get("/about",AboutController.About)
 
 module.exports=Route

@@ -71,15 +71,40 @@
                                     <input type="text" name='forget' class='form-control' required />
                                 </div>
 
+                                <!-- Your HTML/EJS template file -->
+
                                 <div class='col-12' style="margin-top: 10px;">
                                     <label class='form-label'><strong>Role</strong><span class='err-msg'>*</span></label>
                                     <div class="form-check">
-                                        <input class="form-check-input" style="color: #039EE3;" type="checkbox" id="employee" name="isAdmin" value="employee">
+                                        <input class="form-check-input" style="color: #039EE3;" type="checkbox" id="employee" name="isAdmin" value="employee" onchange="toggleServiceField()">
                                         <label class="form-check-label" for="employee">
                                             <strong style="color: #039EE3;">Employee</strong>
                                         </label>
                                     </div>
-                                </div>                                
+                                </div>
+                                
+                                <div class='col-12' id="serviceField" style="display: none;">
+                                    <label class='form-label'><strong>Choose a Service</strong><span class='err-msg'>*</span></label>
+                                    <select name="apply_for" class="form-control">
+                                        <option value="" selected>Select a Service</option>
+                                        <% for (let datas of data) { %>
+                                            <option value="<%= datas.service_name %>"><%= datas.service_name %></option>
+                                        <% } %>
+                                    </select>
+                                </div>
+                                
+                                <script>
+                                    function toggleServiceField() {
+                                        var employeeCheckbox = document.getElementById("employee");
+                                        var serviceField = document.getElementById("serviceField");
+                                
+                                        // If the checkbox is checked, display the service field; otherwise, hide it
+                                        serviceField.style.display = employeeCheckbox.checked ? "block" : "none";
+                                    }
+                                </script>
+                                
+                               
+                               
                                 
 
                             </div>
