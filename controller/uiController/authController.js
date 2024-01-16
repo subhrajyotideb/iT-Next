@@ -33,21 +33,21 @@ exports.Register = async (req,res)=>{
 // Create User and Employee
 exports.CreateUser = async(req,res)=>{
     try {
-        const {name,email,phone,password,forget,isAdmin,isEmployee,apply_for,admin_service_id} = req.body
+        const {name,email,phone,password,forget,isAdmin,isEmployee,apply_for,admin_service_id,isDelete,isUser,isFeature} = req.body
         const image = req.file.path
         const HashPass = await SecurePassword(password)
 
-        // const exist = await UserModel.findOne({
-        //     $or:[
-        //         {email:email},
-        //         {phone:phone}
-        //     ]
-        // })
+        const exist = await UserModel.findOne({
+            $or:[
+                {email:email},
+                {phone:phone}
+            ]
+        })
 
-        // if (exist) {
-        //     req.flash("message","Email or phone already exists. Please use a different email or phone.")
-        //     return res.redirect("/register")
-        // }
+        if (exist) {
+            req.flash("message","Email or phone already exists. Please use a different email or phone.")
+            return res.redirect("/register")
+        }
 
         const NewUser = await new UserModel({
             name:name,
@@ -60,6 +60,9 @@ exports.CreateUser = async(req,res)=>{
             isEmployee:isEmployee,
             apply_for:apply_for,
             admin_service_id:admin_service_id,
+            isDelete:isDelete,
+            isUser:isUser,
+            isFeature:isFeature,
             token : crypto.randomBytes(16).toString('hex')
         })
 

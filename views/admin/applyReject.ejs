@@ -17,9 +17,9 @@
 
   <main id="main" class="main">
     <div class="pagetitle">
-        <h1>Doctors</h1>
+        <h1>Rejected Employee</h1>
         
-            <a href="/admin/addemp" class="btn btn-success">Add Employee</a>
+            
         
     </div>
 
@@ -36,35 +36,42 @@
                             
                         </tr>
                         <tr>
-                            <th scope="col">Department</th>
-                            <th scope="col">Doctor</th>
                             <th scope="col">Date</th>
-                            <th scope="col">Aperture Time</th>
-                            <th scope="col">Departure Time</th>
-                            <th scope="col">Description</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Phone</th>
                             <th scope="col">Image</th>
+                            <th scope="col">Applied For</th>
+                            <th scope="col">Selection</th>
                             <th colspan="2">Operations</th>
                         </tr>
                     </thead>
                     <tbody>
                         <% for (let datas of data) { %>
-                            <% for (let service of datas.service_details) { %>
+                            
                                 <tr>
-                                    <td><%= service.departmentName %></td>
+                                    <td><%= datas.createdAt.toLocaleString() %></td>
                                     <td><%= datas.name %></td>
-                                    <td><%= datas.date.toDateString() %></td>
-                                    <td><%= datas.aperture_time ? new Date(`1970-01-01T${datas.aperture_time}`).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '' %></td>
-                                    <td><%= datas.departure_time ? new Date(`1970-01-01T${datas.departure_time}`).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '' %></td>
-                                    <td><%= datas.description %></td>
-                                    <td><img src="/<%= datas.image %>" height="50px" alt="Doctor Image"></td>
+                                    <td><%= datas.email %></td>
+                                    <td><%= datas.phone %></td>
+                                    <td><img src="/<%= datas.image %>" height="50px" alt="Employee"></td>
+                                    <td><%= datas.apply_for %></td>
                                     <td>
-                                        <a href="/admin/editdoctor/<%=datas._id%>" class="btn btn-primary">Edit</a>
-                                        <a href="/admin/deletedoctor/<%= datas._id %>" class="btn btn-danger" style="margin-left: 5px;">Delete</a>
+                                        <a href="/admin/undo/<%= datas._id %>" class="btn btn-success">
+                                            Undo
+                                        </a>
+                                    </td>
+                                    
+                                    
+                                    
+                                    <td>
+                                        
+                                        <a href="/admin/deletapply/<%= datas._id %>" class="btn btn-danger" style="margin-left: 5px;">Delete</a>
                                     </td>
                                 </tr>
                                 
                             <% } %>
-                        <% } %>
+                        
                     </tbody>
                 </table>
             </div>

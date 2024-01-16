@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- ======= Head ======= -->
+<%-include("layouts/head.ejs")%>
+<!-- ======= End Head ======= -->
+<body>
+  <!-- ======= Header ======= -->
+  <%-include("layouts/header.ejs")%>
+  <!-- ======= End Header ======= -->
+
+
+
+  <!-- ======= Sidebar ======= -->
+  <%-include("layouts/sidebar.ejs")%>
+  <!-- ======= End Sidebar ======= -->
+
+  <main id="main" class="main">
+    <div class="pagetitle">
+        <h1>Apply For</h1>
+        
+            
+        
+    </div>
+
+    <% if (message && message.length > 0) { %>
+        <h5 style="color: rgb(45, 223, 9); text-align: center;"><%=message%></h5>
+    <% } %>
+
+    <% if (reject && reject.length > 0) { %>
+        <h5 style="color: rgb(231, 17, 17); text-align: center;"><%=reject%></h5>
+    <% } %>
+
+    <section class="section dashboard">
+        <div class="row">
+            <div class="col-lg-12">
+                <table class="table datatable" style="margin-top: 20px; width: 100%;">
+                    <thead>
+                        <tr>
+                            
+                        </tr>
+                        <tr>
+                            <th scope="col">Date</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Phone</th>
+                            <th scope="col">Image</th>
+                            <th scope="col">Applied For</th>
+                            <th scope="col">Selection</th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for (let datas of data) { %>
+                            
+                                <tr>
+                                    <td><%= datas.createdAt.toLocaleString() %></td>
+                                    <td><%= datas.name %></td>
+                                    <td><%= datas.email %></td>
+                                    <td><%= datas.phone %></td>
+                                    <td><img src="/<%= datas.image %>" height="50px" alt="Employee"></td>
+                                    <td><%= datas.apply_for %></td>
+                                    <td>
+                                        <a href="/admin/select/<%= datas._id %>" class="btn btn-success">
+                                            Select
+                                        </a>
+                                        <a href="/admin/reject/<%= datas._id %>" class="btn btn-danger">
+                                            Reject
+                                        </a>
+                                    </td>
+                                    
+                                </tr>
+                                
+                            <% } %>
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</main>
+
+
+
+<div style="margin-top: 300px;"></div>
+
+
+  <!-- ======= Footer ======= -->
+  <%-include("layouts/footer.ejs")%>
+  <!-- ======= End Footer ======= -->
+
+
+
+  <!-- ======= Scripts ======= -->
+  <%-include("layouts/scripts.ejs")%>
+  <!-- ======= End Scripts ======= -->
+
+  
+
+</body>
+
+</html>
+   

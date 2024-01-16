@@ -25,19 +25,32 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    isDelete:{
+        type:Boolean,
+        default:false,
+    },
+    isFeature:{
+        type:Boolean,
+        default:false,
+    },
     isAdmin: {
         type: String,
         enum: ["admin", "user", "employee"],
         default: "user",
     },
+    isUser: {
+        type: String,
+        enum: ["active", "inactive"],
+        default: "active",
+    },
     isEmployee:{
         type:String,
-        enum:["active","pending","reject","feature","unfeature"],
+        enum:["pending","select","reject"],
         default:"pending",
     },
-    apply_for:{
-        type:String,
-    },
+    apply_for: {
+        type: String,
+    },    
     admin_service_id:{
         type:mongoose.Schema.Types.ObjectId,
         ref:"service",

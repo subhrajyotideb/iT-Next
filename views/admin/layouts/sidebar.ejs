@@ -16,20 +16,34 @@
 
 
         
-        <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="/admin/service">
+        <ul id="components-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="applyDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="bi bi-circle"></i><span>Apply</span>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="applyDropdown" style="min-width: 260px;">
+              <li><a class="dropdown-item" href="/admin/apply"><i class="bi bi-circle"></i>All</a></li>
+              <li><a class="dropdown-item" href="/admin/select"><i class="bi bi-circle"></i>Selected</a></li>
+              <li><a class="dropdown-item" href="/admin/reject"><i class="bi bi-circle"></i>Rejected</a></li>
+            </ul>
+            
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link" href="/admin/service">
               <i class="bi bi-circle"></i><span>Service</span>
             </a>
-
-            <a href="/admin/emp">
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link" href="/admin/emp">
               <i class="bi bi-circle"></i><span>Employee</span>
-            </a>
-            
             </a>
           </li>
         </ul>
-      </li>
+        
+        
+        
       
 
     </ul>
