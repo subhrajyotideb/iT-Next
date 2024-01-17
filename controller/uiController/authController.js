@@ -104,6 +104,9 @@ exports.CreateUser = async(req,res)=>{
                         Best regards,<br>
                         <img src="https://res.cloudinary.com/ddunssnvi/image/upload/v1705143751/f2vqwvblz9tsmbxhiusq.png" alt="Logo" style="width: 40px; height: 40px;">
                         </div>
+                        <div class="credits" style="text-align: center;">
+                        Project Developed by <a href="https://www.linkedin.com/in/subhrajyoti-debnath-3bb3b6284/" target="_blank">Mr. Subhrajyoti Debnath.</a>
+    </div>
 
 
                     </div>
