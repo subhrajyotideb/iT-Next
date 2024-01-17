@@ -42,12 +42,14 @@
                             <th scope="col">Phone</th>
                             <th scope="col">Image</th>
                             <th scope="col">Applied For</th>
+                            <th scope="col">Select Service</th>
                             <th scope="col">Selection</th>
                             <th colspan="2">Operations</th>
                         </tr>
                     </thead>
                     <tbody>
                         <% for (let datas of data) { %>
+                            
                             
                                 <tr>
                                     <td><%= datas.createdAt.toLocaleString() %></td>
@@ -56,6 +58,21 @@
                                     <td><%= datas.phone %></td>
                                     <td><img src="/<%= datas.image %>" height="50px" alt="Employee"></td>
                                     <td><%= datas.apply_for %></td>
+
+                                    <% if (!datas.admin_service_id) { %>
+                                    <td>
+                                        <a href="/admin/selectservice/<%= datas._id %>" class="btn btn-warning">
+                                            Select Service
+                                        </a>
+                                    </td>
+                                    <% } else { %>
+                                        <td>
+                                            <a href="/admin/selectservice/<%= datas._id %>" class="btn btn-info">
+                                                Change Service
+                                            </a>
+                                        </td>
+                                    <% } %>
+
                                     <td>
                                         <a href="/admin/undo/<%= datas._id %>" class="btn btn-success">
                                             Undo
@@ -71,6 +88,7 @@
                                 </tr>
                                 
                             <% } %>
+                            
                         
                     </tbody>
                 </table>

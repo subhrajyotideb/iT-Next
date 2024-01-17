@@ -18,7 +18,7 @@ const bcrypt = require("bcryptjs")
 exports.Register = async (req,res)=>{
     try {
 
-        const result = await ServiceModel.find()
+        const result = await ServiceModel.find({isActive:true})
 
         res.render("register",{
             data:result,
@@ -33,7 +33,7 @@ exports.Register = async (req,res)=>{
 // Create User and Employee
 exports.CreateUser = async(req,res)=>{
     try {
-        const {name,email,phone,password,forget,isAdmin,isEmployee,apply_for,admin_service_id,isDelete,isUser,isFeature} = req.body
+        const {name,email,phone,password,forget,isAdmin,isEmployee,apply_for,isDelete,isUser,isFeature} = req.body
         const image = req.file.path
         const HashPass = await SecurePassword(password)
 
@@ -59,7 +59,7 @@ exports.CreateUser = async(req,res)=>{
             image:image,
             isEmployee:isEmployee,
             apply_for:apply_for,
-            admin_service_id:admin_service_id,
+            
             isDelete:isDelete,
             isUser:isUser,
             isFeature:isFeature,

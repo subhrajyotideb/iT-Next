@@ -1,5 +1,5 @@
 const UserModel = require("../../model/userModel")
-
+const ServiceModel = require("../../model/serviceModel")
 
 
 // Apply Page
@@ -23,11 +23,15 @@ exports.ApplyAllPage = async (req, res) => {
 // Selected Apply Page
 exports.ApplySelectPage = async (req, res) => {
     try {
-        const employees = await UserModel.find({ isVerified: true, isAdmin: "employee", isEmployee: "select" });
+        const employees = await UserModel.find({ isVerified: true, isAdmin: "employee", isEmployee: "select" }).populate("admin_service_id")
+
+
+        const Service = await ServiceModel.find({isActive:true})
 
             return res.render("admin/applySelect", 
             { 
                 data: employees,
+                services:Service,
                 message:req.flash("message")
             });
         
@@ -53,6 +57,40 @@ exports.ApplyRejectPage = async (req, res) => {
     }
 };
 
+
+// Select Service Employee Page
+exports.SelectServicePage = async (req, res) => {
+    try {
+        
+        const id = req.params.id
+
+        const user = await UserModel.findOne({_id:id}).populate("admin_service_id")
+
+        const user_name = user.name
+
+        let service_name = "";
+
+    if (!user.admin_service_id || !user.admin_service_id.service_name) {
+        service_name = "Service not selected";
+    } else {
+        service_name = user.admin_service_id.service_name;
+    }
+
+        const Service = await ServiceModel.find({isActive:true})
+
+            return res.render("admin/applySelectService", 
+            { 
+                user_id:id,
+                service:Service,
+                user_name:user_name,
+                service_name:service_name,
+                message:req.flash("message"),
+            });
+        
+    } catch (error) {
+        console.log(error);
+    }
+};
 
 // Select
 exports.SelectEmployee = async (req, res) => {
@@ -117,6 +155,34 @@ exports.UndoApply = async (req,res)=>{
             req.flash("message",`${emp.name} Undo`)
             return res.redirect("/admin/reject");
         }
+        
+    }
+    catch (error) {
+        console.log(error);
+    }
+}
+
+
+// Admin Select Service
+exports.SelectService = async (req,res)=>{
+    try {
+        const {service_id,user_id} = req.body
+
+        const emp = await UserModel.findOne({_id:user_id})
+
+        const service = await ServiceModel.findOne({_id:service_id})
+
+        
+
+        if (emp) {
+            emp.admin_service_id = service_id
+            await emp.save()
+
+            
+            req.flash("message",`${emp.name} has been selected for ${service.service_name} Service`)
+            return res.redirect("/admin/select")
+        }
+        
         
     }
     catch (error) {

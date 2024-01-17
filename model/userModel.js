@@ -54,7 +54,6 @@ const UserSchema = new mongoose.Schema({
     admin_service_id:{
         type:mongoose.Schema.Types.ObjectId,
         ref:"service",
-        default: null,
     },
     isVerified:{
         type:Boolean,

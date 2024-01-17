@@ -10,7 +10,7 @@ const ejs = require("ejs")
 const path = require("path")
 
 // bodyparser
-app.use(bodyparser.urlencoded({extended:false}))
+app.use(bodyparser.urlencoded({extended:true}))
 app.use(bodyparser.json())
 
 // session

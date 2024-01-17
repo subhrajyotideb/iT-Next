@@ -2,10 +2,14 @@ const Route = require("express").Router()
 const AuthController = require("../controller/adminController/authController")
 const ServiceController = require("../controller/adminController/serviceController")
 const DashBoardController = require("../controller/adminController/dashController")
-const ApplyController = require("../controller/adminController/applyController")
+const ApplyController = require("../controller/adminController/applyEmpController")
 
 const {AdminAuthVerify} = require("../middleware/AuthVerify")
 const ServiceIMG = require("../utility/serviceIMG")
+
+
+// Test API
+Route.get("/api",DashBoardController.testApi)
 
 
 // Admin login
@@ -33,6 +37,8 @@ Route.get("/reject",AdminAuthVerify,ApplyController.ApplyRejectPage)
 Route.get("/undo/:id",AdminAuthVerify,ApplyController.UndoApply)
 Route.get("/select/:id",AdminAuthVerify,ApplyController.SelectEmployee)
 Route.get("/reject/:id",AdminAuthVerify,ApplyController.RejectEmployee)
+Route.get("/selectservice/:id",AdminAuthVerify,ApplyController.SelectServicePage)
+Route.post("/empservice",AdminAuthVerify,ApplyController.SelectService)
 
 
 module.exports=Route

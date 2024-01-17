@@ -51,10 +51,13 @@
       </div>
     </div>
   </div>
-</div><!-- End User Card -->
+</div>
+<!-- End User Card -->
 
 <!-- Applicants Card -->
+
 <div class="col-xxl-4 col-md-6">
+  <a href="/admin/apply">
   <div class="card info-card sales-card">
     <div class="card-body">
       <h5 class="card-title">Pending Applicants <span>| Total</span></h5>
@@ -68,10 +71,14 @@
       </div>
     </div>
   </div>
-</div><!-- End Applicants Card -->
+</a>
+</div>
+
+<!-- End Applicants Card -->
 
 <!-- Selected Applicants Card -->
 <div class="col-xxl-4 col-md-6">
+  <a href="/admin/select">
   <div class="card info-card sales-card">
     <div class="card-body">
       <h5 class="card-title">Selected Applicants <span>| Total</span></h5>
@@ -85,10 +92,13 @@
       </div>
     </div>
   </div>
-</div><!-- End Selected Applicants Card -->
+</a>
+</div>
+<!-- End Selected Applicants Card -->
 
 <!-- Rejected Applicants Card -->
 <div class="col-xxl-4 col-md-6">
+  <a href="/admin/reject">
   <div class="card info-card sales-card">
     <div class="card-body">
       <h5 class="card-title">Rejected Applicants <span>| Total</span></h5>
@@ -102,12 +112,15 @@
       </div>
     </div>
   </div>
-</div><!-- End Rejected Applicants Card -->
+</a>
+</div>
+<!-- End Rejected Applicants Card -->
 
 
 
 <!-- Services Card -->
 <div class="col-xxl-4 col-md-6">
+  <a href="/admin/service">
   <div class="card info-card sales-card">
     <div class="card-body">
       <h5 class="card-title">Services <span>| Total</span></h5>
@@ -121,7 +134,9 @@
       </div>
     </div>
   </div>
-</div><!-- End Services Card -->
+</a>
+</div>
+<!-- End Services Card -->
 
 <!-- Active Services Card -->
 <div class="col-xxl-4 col-md-6">
@@ -138,7 +153,8 @@
       </div>
     </div>
   </div>
-</div><!-- End Active Services Card -->
+</div>
+<!-- End Active Services Card -->
 
 <!-- Inactive Services Card -->
 <div class="col-xxl-4 col-md-6">
@@ -147,7 +163,7 @@
       <h5 class="card-title">Inactive Services <span>| Total</span></h5>
       <div class="d-flex align-items-center">
         <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-          <i class="bi bi-x"></i> <!-- Change the icon here for inactive services -->
+          <i class="bi bi-x"></i> 
         </div>
         <div class="ps-3">
           <h6><%=InactiveServices%></h6>
@@ -155,17 +171,18 @@
       </div>
     </div>
   </div>
-</div><!-- End Inactive Services Card -->
+</div>
+<!-- End Inactive Services Card -->
 
 
 <!-- Blog Card -->
-<div class="col-xxl-4 col-md-6">
+<!-- <div class="col-xxl-4 col-md-6">
   <div class="card info-card sales-card">
     <div class="card-body">
       <h5 class="card-title">Blog <span>| Total</span></h5>
       <div class="d-flex align-items-center">
         <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-          <i class="bi bi-pencil"></i> <!-- Change the icon here -->
+          <i class="bi bi-pencil"></i> 
         </div>
         <div class="ps-3">
           <h6>  </h6>
@@ -173,18 +190,19 @@
       </div>
     </div>
   </div>
-</div><!-- End Blog Card -->
+</div> -->
+<!-- End Blog Card -->
 
 
 
                <!-- Pending Appointment Card -->
-<div class="col-xxl-4 col-md-6">
+<!-- <div class="col-xxl-4 col-md-6">
   <div class="card info-card sales-card">
     <div class="card-body">
       <h5 class="card-title">Pending Appointment <span>| Total</span></h5>
       <div class="d-flex align-items-center">
         <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-          <i class="bi bi-calendar-check"></i> <!-- Change the icon here -->
+          <i class="bi bi-calendar-check"></i> 
         </div>
         <div class="ps-3">
           <h6>  </h6>
@@ -192,18 +210,19 @@
       </div>
     </div>
   </div>
-</div><!-- End Appointment Card -->
+</div> -->
+<!-- End Appointment Card -->
 
 
 
 <!-- Contact Card -->
-<div class="col-xxl-4 col-md-6">
+<!-- <div class="col-xxl-4 col-md-6">
   <div class="card info-card sales-card">
     <div class="card-body">
       <h5 class="card-title">Contact Us <span>| Total</span></h5>
       <div class="d-flex align-items-center">
         <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-          <i class="bi bi-envelope"></i> <!-- Change the icon here -->
+          <i class="bi bi-envelope"></i> 
         </div>
         <div class="ps-3">
           <h6>  </h6>
@@ -211,7 +230,53 @@
       </div>
     </div>
   </div>
-</div><!-- End Contact Card -->
+</div> -->
+<!-- End Contact Card -->
+
+
+
+
+<!-- Mobile Repair Service Card -->
+<div class="col-xxl-4 col-md-6">
+  <a href="/admin/service">
+  <div class="card info-card sales-card">
+    <div class="card-body">
+      <h5 class="card-title">Mobile Repair <span>| Total Employee</span></h5>
+      <div class="d-flex align-items-center">
+        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+          <i class="bi bi-gear"></i> <!-- Change the icon here for general services -->
+        </div>
+        <div class="ps-3">
+          <h6><%=mobileRepairCount%></h6>
+        </div>
+      </div>
+    </div>
+  </div>
+</a>
+</div>
+<!-- End Mobile Repair Service Card -->
+
+<!-- Computer Repair Service Card -->
+<div class="col-xxl-4 col-md-6">
+  <a href="/admin/service">
+  <div class="card info-card sales-card">
+    <div class="card-body">
+      <h5 class="card-title">Computer Repair Service <span>| Total</span></h5>
+      <div class="d-flex align-items-center">
+        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+          <i class="bi bi-gear"></i> <!-- Change the icon here for general services -->
+        </div>
+        <div class="ps-3">
+          <h6><%=ComputerRepairCount%></h6>
+        </div>
+      </div>
+    </div>
+  </div>
+</a>
+</div>
+<!-- End Computer Repair Service Card -->
+
+
 
 
 
@@ -229,7 +294,7 @@
 
 
 
-<div style="margin-top: 300px;"></div>
+<div style="margin-top: 50px;"></div>
 
 
   <!-- ======= Footer ======= -->
