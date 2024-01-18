@@ -3,6 +3,7 @@ const AuthController = require("../controller/adminController/authController")
 const ServiceController = require("../controller/adminController/serviceController")
 const DashBoardController = require("../controller/adminController/dashController")
 const ApplyController = require("../controller/adminController/applyEmpController")
+const UserTotalController = require("../controller/adminController/userTotalController")
 
 const {AdminAuthVerify} = require("../middleware/AuthVerify")
 const ServiceIMG = require("../utility/serviceIMG")
@@ -39,6 +40,12 @@ Route.get("/select/:id",AdminAuthVerify,ApplyController.SelectEmployee)
 Route.get("/reject/:id",AdminAuthVerify,ApplyController.RejectEmployee)
 Route.get("/selectservice/:id",AdminAuthVerify,ApplyController.SelectServicePage)
 Route.post("/empservice",AdminAuthVerify,ApplyController.SelectService)
+Route.get("/empstatus/:id",AdminAuthVerify,ApplyController.StatusEmp)
 
+
+// User Total
+Route.get("/usertotal",AdminAuthVerify,UserTotalController.UserTotal)
+Route.get("/userdelete/:id",AdminAuthVerify,UserTotalController.DeleteSoft)
+Route.get("/userstatus/:id",AdminAuthVerify,UserTotalController.StatusUser)
 
 module.exports=Route

@@ -187,6 +187,12 @@ exports.Login = async (req, res) => {
             return res.redirect("/login");
         }
 
+        if (user.isUser==="inactive") {
+            req.flash("message", "Oops! It seems you're currently unable to access our services. Kindly get in touch with our support team for assistance. Thank you!")
+            return res.redirect("/login");
+        }
+
+
         const passwordMatch = await bcrypt.compare(password, user.password);
 
         if (passwordMatch && (user.isAdmin === "user")) {

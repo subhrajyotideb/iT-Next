@@ -6,6 +6,8 @@ const ServiceModel = require("../../model/serviceModel")
 exports.Dashboard = async (req,res)=>{
     try {
         const user = await UserModel.countDocuments({isAdmin:"user", isDelete: false})
+        const activeuser = await UserModel.countDocuments({isAdmin:"user", isDelete: false, isUser:"active"})
+        const inactiveuser = await UserModel.countDocuments({isAdmin:"user", isDelete: false, isUser:"inactive"})
         const PendingApplicants = await UserModel.countDocuments({isEmployee:"pending", isAdmin:"employee", isDelete: false})
         const SelectedApplicants = await UserModel.countDocuments({isEmployee:"select", isAdmin:"employee", isDelete: false})
         const RejectedApplicants = await UserModel.countDocuments({isEmployee:"reject", isAdmin:"employee", isDelete: false})
@@ -18,7 +20,8 @@ exports.Dashboard = async (req,res)=>{
                 $match: {
                     isEmployee: "select",
                     isAdmin: "employee",
-                    isDelete: false
+                    isDelete: false,
+                    isUser:"active"
                 }
             },
             {
@@ -48,7 +51,8 @@ exports.Dashboard = async (req,res)=>{
                 $match: {
                     isEmployee: "select",
                     isAdmin: "employee",
-                    isDelete: false
+                    isDelete: false,
+                    isUser:"active"
                 }
             },
             {
@@ -89,6 +93,8 @@ exports.Dashboard = async (req,res)=>{
             InactiveServices:InactiveServices,
             mobileRepairCount:mobileRepairCount,
             ComputerRepairCount:ComputerRepairCount,
+            activeuser:activeuser,
+            inactiveuser:inactiveuser
 
         })
         

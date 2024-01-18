@@ -62,13 +62,6 @@ const UserSchema = new mongoose.Schema({
     token:{
         type:String,
         required:true,
-    },
-    expiresAt:{
-        type:Date,
-        default:Date.now(),
-        index:{
-            expires:864000
-        }
     }
 },{
     timestamps:true

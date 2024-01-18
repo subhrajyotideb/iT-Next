@@ -5,7 +5,7 @@ const ServiceModel = require("../../model/serviceModel")
 // Apply Page
 exports.ApplyAllPage = async (req, res) => {
     try {
-        const employees = await UserModel.find({ isVerified: true, isAdmin: "employee", isEmployee: "pending" });
+        const employees = await UserModel.find({ isVerified: true, isAdmin: "employee", isEmployee: "pending", isDelete:false });
 
             return res.render("admin/applyEmp", 
             { 
@@ -23,16 +23,18 @@ exports.ApplyAllPage = async (req, res) => {
 // Selected Apply Page
 exports.ApplySelectPage = async (req, res) => {
     try {
-        const employees = await UserModel.find({ isVerified: true, isAdmin: "employee", isEmployee: "select" }).populate("admin_service_id")
+        const employees = await UserModel.find({ isVerified: true, isAdmin: "employee", isEmployee: "select", isDelete:false }).populate("admin_service_id")
 
+    
 
-        const Service = await ServiceModel.find({isActive:true})
+        const Service = await ServiceModel.find({isActive:true, isDelete:false})
 
             return res.render("admin/applySelect", 
             { 
                 data: employees,
                 services:Service,
-                message:req.flash("message")
+                message:req.flash("message"),
+                error:req.flash("error")
             });
         
     } catch (error) {
@@ -44,7 +46,7 @@ exports.ApplySelectPage = async (req, res) => {
 // Rejected Apply Page
 exports.ApplyRejectPage = async (req, res) => {
     try {
-        const employees = await UserModel.find({ isVerified: true, isAdmin: "employee", isEmployee: "reject" });
+        const employees = await UserModel.find({ isVerified: true, isAdmin: "employee", isEmployee: "reject", isDelete:false });
 
             return res.render("admin/applyReject", 
             { 
@@ -76,7 +78,7 @@ exports.SelectServicePage = async (req, res) => {
         service_name = user.admin_service_id.service_name;
     }
 
-        const Service = await ServiceModel.find({isActive:true})
+        const Service = await ServiceModel.find({isActive:true, isDelete:false})
 
             return res.render("admin/applySelectService", 
             { 
@@ -184,6 +186,33 @@ exports.SelectService = async (req,res)=>{
         }
         
         
+    }
+    catch (error) {
+        console.log(error);
+    }
+}
+
+// Employee Status
+exports.StatusEmp = async (req,res)=>{
+    try {
+        const id = req.params.id
+
+        const User = await UserModel.findOne({_id:id})
+
+        if (!User.admin_service_id) {
+            req.flash("error",`Service not selected for ${User.name}`)
+            return res.redirect("/admin/select")
+        }
+
+        if (User.isUser==="active") {
+            User.isUser = "inactive"
+        } else {
+            User.isUser = "active"
+        }
+
+        await User.save()
+        req.flash("message",`${User.name} status changed`)
+        return res.redirect("/admin/select")
     }
     catch (error) {
         console.log(error);

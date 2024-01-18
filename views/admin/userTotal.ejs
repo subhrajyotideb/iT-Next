@@ -17,7 +17,7 @@
 
   <main id="main" class="main">
     <div class="pagetitle">
-        <h1>Selected Employee</h1>
+        <h1>Total User</h1>
         
             
         
@@ -28,7 +28,7 @@
     <% } %>
 
     <% if (error && error.length > 0) { %>
-        <h5 style="color: rgb(232, 22, 22); text-align: center;"><%=error%></h5>
+        <h5 style="color: rgb(231, 10, 10); text-align: center;"><%=error%></h5>
     <% } %>
 
     <section class="section dashboard">
@@ -45,71 +45,44 @@
                             <th scope="col">Email</th>
                             <th scope="col">Phone</th>
                             <th scope="col">Image</th>
-                            <th scope="col">Applied</th>
-                            <th scope="col">Select Service</th>
+                            
                             <th scope="col">Status</th>
-                            <th scope="col">Selection</th>
                             <th colspan="2">Operations</th>
                         </tr>
                     </thead>
                     <tbody>
                         <% for (let datas of data) { %>
                             
-                            
                                 <tr>
                                     <td><%= datas.createdAt.toLocaleString() %></td>
                                     <td><%= datas.name %></td>
                                     <td><%= datas.email %></td>
                                     <td><%= datas.phone %></td>
-                                    <td><img src="/<%= datas.image %>" height="50px" alt="Employee"></td>
-                                    <td><%= datas.apply_for %></td>
-
-                                    <% if (!datas.admin_service_id) { %>
-                                    <td>
-                                        <a href="/admin/selectservice/<%= datas._id %>" class="btn btn-warning">
-                                            Select Service
-                                        </a>
-                                    </td>
-                                    <% } else { %>
+                                    <td><img src="/<%= datas.image %>" height="50px" alt="User"></td>
+                                    
+                                    <% if (datas.isUser==="active") { %>
                                         <td>
-                                            <a href="/admin/selectservice/<%= datas._id %>" class="btn btn-info">
-                                                <%=datas.admin_service_id.service_name%>
+                                            <a href="/admin/userstatus/<%= datas._id %>" class="btn btn-success">
+                                                Active
                                             </a>
                                         </td>
-                                    <% } %>
-
-
-                                    <% if (datas.isUser==="active") { %>
-                                    <td>
-                                        <a href="/admin/empstatus/<%= datas._id %>" class="btn btn-success">
-                                            Active
-                                        </a>
-                                    </td>
-                                    <% } else { %>
-                                    <td>
-                                        <a href="/admin/empstatus/<%= datas._id %>" class="btn btn-danger">
-                                            Inactive
-                                        </a>
-                                    </td>
-                                    <% } %>
-
-
-                                    <td>
-                                        <a href="/admin/undo/<%= datas._id %>" class="btn btn-success">
-                                            Undo
-                                        </a>
-                                    </td>
+                                        <% } else { %>
+                                        <td>
+                                            <a href="/admin/userstatus/<%= datas._id %>" class="btn btn-danger">
+                                                Inactive
+                                            </a>
+                                        </td>
+                                        <% } %>
                                     
                                     
-                         
+                                    
                                     <td>
-                                        <a href="/admin/editapply/<%=datas._id%>" class="btn btn-primary">Edit</a>
                                         
+                                        <a href="/admin/userdelete/<%= datas._id %>" class="btn btn-danger" style="margin-left: 5px;">Delete</a>
                                     </td>
                                 </tr>
                                 
                             <% } %>
-                            
                         
                     </tbody>
                 </table>
