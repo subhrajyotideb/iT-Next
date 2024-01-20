@@ -8,7 +8,7 @@ exports.Dashboard = async (req,res)=>{
         const user = await UserModel.countDocuments({isAdmin:"user", isDelete: false})
         const activeuser = await UserModel.countDocuments({isAdmin:"user", isDelete: false, isUser:"active"})
         const inactiveuser = await UserModel.countDocuments({isAdmin:"user", isDelete: false, isUser:"inactive"})
-        const PendingApplicants = await UserModel.countDocuments({isEmployee:"pending", isAdmin:"employee", isDelete: false})
+        const PendingApplicants = await UserModel.countDocuments({isEmployee:"pending", isAdmin:"employee", isVerified: true, isDelete: false})
         const SelectedApplicants = await UserModel.countDocuments({isEmployee:"select", isAdmin:"employee", isDelete: false})
         const RejectedApplicants = await UserModel.countDocuments({isEmployee:"reject", isAdmin:"employee", isDelete: false})
         const Services = await ServiceModel.countDocuments()
