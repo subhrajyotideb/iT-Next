@@ -17,7 +17,7 @@
 
   <main id="main" class="main">
     <div class="pagetitle">
-        <h1>Total User</h1>
+        <h1>Data Recovery Service Employees</h1>
         
             
         
@@ -28,7 +28,7 @@
     <% } %>
 
     <% if (error && error.length > 0) { %>
-        <h5 style="color: rgb(231, 10, 10); text-align: center;"><%=error%></h5>
+        <h5 style="color: rgb(232, 22, 22); text-align: center;"><%=error%></h5>
     <% } %>
 
     <section class="section dashboard">
@@ -40,49 +40,52 @@
                             
                         </tr>
                         <tr>
-                            <th scope="col">Date</th>
+                            
                             <th scope="col">Name</th>
                             <th scope="col">Email</th>
                             <th scope="col">Phone</th>
                             <th scope="col">Image</th>
                             
-                            <th scope="col">Status</th>
-                            <th colspan="2">Operations</th>
+                            
+                            <th scope="col">Feature</th>
+                            
                         </tr>
                     </thead>
                     <tbody>
                         <% for (let datas of data) { %>
                             
+                            
                                 <tr>
-                                    <td><%= datas.createdAt.toLocaleString() %></td>
-                                    <td><%= datas.name %></td>
-                                    <td><%= datas.email %></td>
-                                    <td><%= datas.phone %></td>
-                                    <td><img src="/<%= datas.image %>" height="50px" alt="User"></td>
                                     
-                                    <% if (datas.isUser==="active") { %>
-                                        <td>
-                                            <a href="/admin/userstatus/<%= datas._id %>" class="btn btn-success">
-                                                Active
-                                            </a>
-                                        </td>
-                                        <% } else { %>
-                                        <td>
-                                            <a href="/admin/userstatus/<%= datas._id %>" class="btn btn-danger">
-                                                Inactive
-                                            </a>
-                                        </td>
-                                        <% } %>
+                                    <td><%= datas.emp_name %></td>
+                                    <td><%= datas.emp_email %></td>
+                                    <td><%= datas.emp_phone %></td>
+                                    <td><img src="/<%= datas.emp_image %>" height="50px" alt="Employee"></td>
                                     
-                                    
-                                    
+
+                                   
+
+
+                                    <% if (datas.emp_isFeature===true) { %>
                                     <td>
-                                        
-                                        <a href="/admin/userdelete/<%= datas._id %>" class="btn btn-danger" style="margin-left: 5px;">Delete</a>
+                                        <a href="/admin/empdatarecoveryfeature/<%= datas._id %>" class="btn btn-success">
+                                            Featured
+                                        </a>
                                     </td>
+                                    <% } else { %>
+                                    <td>
+                                        <a href="/admin/empdatarecoveryfeature/<%= datas._id %>" class="btn btn-danger">
+                                            Unfeatured
+                                        </a>
+                                    </td>
+                                    <% } %>
+
+
+                                    
                                 </tr>
                                 
                             <% } %>
+                            
                         
                     </tbody>
                 </table>

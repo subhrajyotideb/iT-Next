@@ -4,6 +4,7 @@ const ServiceController = require("../controller/adminController/serviceControll
 const DashBoardController = require("../controller/adminController/dashController")
 const ApplyController = require("../controller/adminController/applyEmpController")
 const UserTotalController = require("../controller/adminController/userTotalController")
+const NewServiceEmpController = require("../controller/adminController/NewServiceEmpController")
 
 const {AdminAuthVerify} = require("../middleware/AuthVerify")
 const ServiceIMG = require("../utility/serviceIMG")
@@ -33,7 +34,6 @@ Route.get("/delete/:id",AdminAuthVerify,ServiceController.DeleteSoft)
 
 // Apply
 Route.get("/apply",AdminAuthVerify,ApplyController.ApplyAllPage)
-Route.get("/select",AdminAuthVerify,ApplyController.ApplySelectPage)
 Route.get("/reject",AdminAuthVerify,ApplyController.ApplyRejectPage)
 Route.get("/undo/:id",AdminAuthVerify,ApplyController.UndoApply)
 Route.get("/select/:id",AdminAuthVerify,ApplyController.SelectEmployee)
@@ -47,5 +47,25 @@ Route.get("/empstatus/:id",AdminAuthVerify,ApplyController.StatusEmp)
 Route.get("/usertotal",AdminAuthVerify,UserTotalController.UserTotal)
 Route.get("/userdelete/:id",AdminAuthVerify,UserTotalController.DeleteSoft)
 Route.get("/userstatus/:id",AdminAuthVerify,UserTotalController.StatusUser)
+// Active User Total
+Route.get("/activeusertotal",AdminAuthVerify,UserTotalController.UserTotalActive)
+Route.get("/activeuserstatus/:id",AdminAuthVerify,UserTotalController.StatusUserActive)
+// Inactive User Total
+Route.get("/inactiveusertotal",AdminAuthVerify,UserTotalController.UserTotalInactive)
+Route.get("/inactiveuserstatus/:id",AdminAuthVerify,UserTotalController.StatusUserInactive)
+Route.get("/inactiveuserdelete/:id",AdminAuthVerify,UserTotalController.InactiveDeleteSoft)
 
-module.exports=Route
+// Employee Total
+Route.get("/select",AdminAuthVerify,ApplyController.ApplySelectPage)
+
+// Mobile Repair Employee Total
+Route.get("/empmobilerepair",AdminAuthVerify,NewServiceEmpController.EmpMobileRepairPage)
+Route.get("/empmobilerepairfeature/:id",AdminAuthVerify,NewServiceEmpController.FeatureEmpMobile)
+// Computer Repair Employee Total
+Route.get("/empcomputerrepair",AdminAuthVerify,NewServiceEmpController.EmpComputerRepairPage)
+Route.get("/empcomputerrepairfeature/:id",AdminAuthVerify,NewServiceEmpController.FeatureEmpComputer)
+// Data Recovery Employee Total
+Route.get("/empdatarecovery",AdminAuthVerify,NewServiceEmpController.EmpDataRecoveryPage)
+Route.get("/empdatarecoveryfeature/:id",AdminAuthVerify,NewServiceEmpController.FeatureEmpDataRecovery)
+
+module.exports = Route

@@ -25,8 +25,6 @@ exports.ApplySelectPage = async (req, res) => {
     try {
         const employees = await UserModel.find({ isVerified: true, isAdmin: "employee", isEmployee: "select", isDelete:false }).populate("admin_service_id")
 
-    
-
         const Service = await ServiceModel.find({isActive:true, isDelete:false})
 
             return res.render("admin/applySelect", 

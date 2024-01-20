@@ -17,14 +17,14 @@
 
   <main id="main" class="main">
     <div class="pagetitle">
-        <h1>Total User</h1>
+        <h1>Active Users</h1>
         
             
         
     </div>
 
     <% if (message && message.length > 0) { %>
-        <h5 style="color: #012970; text-align: center;"><%=message%></h5>
+        <h5 style="color: rgb(231, 10, 10); text-align: center;"><%=message%></h5>
     <% } %>
 
     <% if (error && error.length > 0) { %>
@@ -47,7 +47,7 @@
                             <th scope="col">Image</th>
                             
                             <th scope="col">Status</th>
-                            <th colspan="2">Operations</th>
+                            <!-- <th colspan="2">Operations</th> -->
                         </tr>
                     </thead>
                     <tbody>
@@ -62,13 +62,13 @@
                                     
                                     <% if (datas.isUser==="active") { %>
                                         <td>
-                                            <a href="/admin/userstatus/<%= datas._id %>" class="btn btn-success">
+                                            <a href="/admin/activeuserstatus/<%= datas._id %>" class="btn btn-success">
                                                 Active
                                             </a>
                                         </td>
                                         <% } else { %>
                                         <td>
-                                            <a href="/admin/userstatus/<%= datas._id %>" class="btn btn-danger">
+                                            <a href="/admin/activeuserstatus/<%= datas._id %>" class="btn btn-danger">
                                                 Inactive
                                             </a>
                                         </td>
@@ -76,10 +76,10 @@
                                     
                                     
                                     
-                                    <td>
+                                    <!-- <td>
                                         
                                         <a href="/admin/userdelete/<%= datas._id %>" class="btn btn-danger" style="margin-left: 5px;">Delete</a>
-                                    </td>
+                                    </td> -->
                                 </tr>
                                 
                             <% } %>

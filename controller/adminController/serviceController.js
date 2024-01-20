@@ -13,7 +13,8 @@ exports.ServicePage = async (req,res)=>{
 
         res.render("admin/service",{
             data:result,
-            message:req.flash("message")
+            message:req.flash("message"),
+            error:req.flash("error")
         })
     }
     catch (error) {
@@ -21,10 +22,12 @@ exports.ServicePage = async (req,res)=>{
     }
 }
 
+
 // Service add page
 exports.ServiceAddPage = (req,res)=>{
     res.render("admin/serviceAdd")
 }
+
 
 // Service edit page
 exports.ServiceEditPage = async (req,res)=>{
@@ -63,6 +66,7 @@ exports.CreateService = async (req,res)=>{
         console.log(error);
     }
 }
+
 
 // Update Service
 exports.UpdateService = async (req, res) => {
@@ -106,9 +110,11 @@ exports.ServiceActiveButton = async (req, res) => {
         if (status.isActive === false) {
             
             status.isActive = true;
+            req.flash("message",`${status.service_name} Service is set to Active`)
         } else {
             
             status.isActive = false;
+            req.flash("error",`${status.service_name} Service is set to Inactive`)
         }
 
         await status.save();
@@ -120,6 +126,7 @@ exports.ServiceActiveButton = async (req, res) => {
     }
 };
 
+
 // Delete Service
 exports.DeleteSoft = async (req,res)=>{
     try {
@@ -127,6 +134,11 @@ exports.DeleteSoft = async (req,res)=>{
         const id = req.params.id
 
         const service = await ServiceModel.findById({_id:id})
+
+        if (service.isActive===true) {
+            req.flash("error",`${service.service_name} is a Active Service`)
+            return res.redirect("/admin/service")
+        }
 
         if (service.isDelete === false) {
 
