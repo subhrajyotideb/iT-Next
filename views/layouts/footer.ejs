@@ -35,11 +35,11 @@
                 <h2>Services</h2>
               </div>
               <ul class="footer-menu">
-                <li><a href="it_data_recovery.html"><i class="fa fa-angle-right"></i> Data recovery</a></li>
-                <li><a href="it_computer_repair.html"><i class="fa fa-angle-right"></i> Computer repair</a></li>
-                <li><a href="it_mobile_service.html"><i class="fa fa-angle-right"></i> Mobile service</a></li>
-                <li><a href="it_network_solution.html"><i class="fa fa-angle-right"></i> Network solutions</a></li>
-                <li><a href="it_techn_support.html"><i class="fa fa-angle-right"></i> Technical support</a></li>
+
+                <% for (let datas of data) { %>
+                <li><a href="/"><i class="fa fa-angle-right"></i> <%= datas.service_name %></a></li>
+                <% } %>
+
               </ul>
             </div>
             <div class="col-md-6">

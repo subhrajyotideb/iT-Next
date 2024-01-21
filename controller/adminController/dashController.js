@@ -113,8 +113,8 @@ exports.Dashboard = async (req,res)=>{
         // console.log(DataRecoveryCount);
 
 
-        const ActiveServices = await ServiceModel.countDocuments({isActive:true})
-        const InactiveServices = await ServiceModel.countDocuments({isActive:false})
+        const ActiveServices = await ServiceModel.countDocuments({isActive:true, isDelete:false})
+        const InactiveServices = await ServiceModel.countDocuments({isActive:false, isDelete:false})
         
 
         return res.render("admin/dashboard",{
