@@ -161,8 +161,18 @@ exports.Confirmation = async (req, res) => {
 };
 
 // Login page
-exports.LoginPage=(req,res)=>{
-    res.render("login",{message:req.flash("message")})
+exports.LoginPage = async (req,res)=>{
+    try {
+        const result = await ServiceModel.find({isActive:true})
+
+        res.render("login",{
+            data:result,
+            message:req.flash("message")
+        })
+    }
+    catch (error) {
+        console.log(error);
+    }
 }
 
 // Create Login
