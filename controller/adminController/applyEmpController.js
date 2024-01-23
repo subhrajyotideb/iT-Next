@@ -204,12 +204,14 @@ exports.StatusEmp = async (req,res)=>{
 
         if (User.isUser==="active") {
             User.isUser = "inactive"
+            req.flash("error",`${User.name} status is set to Inactive`)
         } else {
             User.isUser = "active"
+            req.flash("message",`${User.name} status is set to Active`)
         }
 
         await User.save()
-        req.flash("message",`${User.name} status changed`)
+        
         return res.redirect("/admin/select")
     }
     catch (error) {
