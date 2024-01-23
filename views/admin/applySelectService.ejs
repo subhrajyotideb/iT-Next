@@ -35,7 +35,7 @@
             <div class="form-group" style="padding-bottom: 10px;">
                 <label for="service_id" style="padding-bottom: 10px;">Select Service for Employee: <strong><%=user_name%></strong> </label>
                 <select class="form-control" id="service_id" name="service_id" required>
-                  <option value="option1">Select Service</option>
+                  <option value="">Select Service</option>
 
                   <% for (let services of service) { %>
                   <option value="<%= services._id %>" > <%= services.service_name %> </option>
