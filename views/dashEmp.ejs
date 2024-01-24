@@ -14,10 +14,10 @@
               <h1 style="text-align: center; "><strong><%=message%></strong></h1>
               <div class="row g-0">
                 <div class="col-md-5 text-center text-white" style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem; background-color: #039EE3;">
-                  <img src="/<%= data.image %>" alt="Avatar" class="img-fluid my-4" style="width: 120px; height: 120px; border-radius: 100%;">
-                  <h4 class="text-white">Name - <%= data.name %></h4>
-                  <p class="text-white">Email - <%= data.email %></p>
-                  <p class="text-white">Contact No - <%= data.phone %></p>
+                  <img src="/<%= user.image %>" alt="Avatar" class="img-fluid my-4" style="width: 120px; height: 120px; border-radius: 100%;">
+                  <h4 class="text-white">Name - <%= user.name %></h4>
+                  <p class="text-white">Email - <%= user.email %></p>
+                  <p class="text-white">Contact No - <%= user.phone %></p>
                   <i class="flaticon-barbell" style="font-size: 40px;"><strong>Employee</strong></i>
                   <div style="padding-bottom: 40px;"></div>
                   <!-- Logout Button with red text color and extra padding -->
@@ -31,11 +31,11 @@
                     <div class="row pt-1">
                       <div class="col-6 mb-3">
                         <h6 class="text-white">Email</h6>
-                        <p class="text-white"><%= data.email %></p>
+                        <p class="text-white"><%= user.email %></p>
                       </div>
                       <div class="col-6 mb-3">
                         <h6 class="text-white">Phone</h6>
-                        <p class="text-white"><%= data.phone %></p>
+                        <p class="text-white"><%= user.phone %></p>
                       </div>
                     </div>
                   </div>

@@ -163,7 +163,7 @@ exports.Confirmation = async (req, res) => {
 // Login page
 exports.LoginPage = async (req,res)=>{
     try {
-        const result = await ServiceModel.find({isActive:true})
+        const result = await ServiceModel.find({isActive:true, isDelete:false})
 
         res.render("login",{
             data:result,

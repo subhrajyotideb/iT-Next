@@ -1,5 +1,5 @@
 const UserModel = require("../../model/userModel")
-
+const ServiceModel = require("../../model/serviceModel")
 
 
 
@@ -8,8 +8,11 @@ exports.DashEmp = async (req,res)=>{
     try {
         const result = await UserModel.findById(req.emp._id)
 
+        const service = await ServiceModel.find({isActive:true, isDelete:false})
+
         return res.render("dashEmp",{
-            data:result,
+            user:result,
+            data:service,
             message:req.flash("message")
         })
     }
