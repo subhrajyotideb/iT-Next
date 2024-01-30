@@ -8,10 +8,12 @@ const NewServiceEmpController = require("../controller/adminController/NewServic
 
 const {AdminAuthVerify} = require("../middleware/AuthVerify")
 const ServiceIMG = require("../utility/serviceIMG")
+const EmployeeIMG = require("../utility/userIMG")
 
 
 // Test API
 Route.get("/api",DashBoardController.testApi)
+
 
 
 // Admin login
@@ -41,6 +43,8 @@ Route.get("/reject/:id",AdminAuthVerify,ApplyController.RejectEmployee)
 Route.get("/selectservice/:id",AdminAuthVerify,ApplyController.SelectServicePage)
 Route.post("/empservice",AdminAuthVerify,ApplyController.SelectService)
 Route.get("/empstatus/:id",AdminAuthVerify,ApplyController.StatusEmp)
+Route.get("/editselectedemp/:id",AdminAuthVerify,ApplyController.ApplySelectedEMPEditPage)
+Route.post("/updateselectedemployee/:id",AdminAuthVerify,EmployeeIMG,ApplyController.ApplyUpdateSelectedEMP)
 
 
 // User Total

@@ -19,6 +19,55 @@ exports.ApplyAllPage = async (req, res) => {
     }
 };
 
+// Edit Apply Selected Employee Page
+exports.ApplySelectedEMPEditPage = async (req,res)=>{
+    try {
+        const id = req.params.id
+        const emp = await UserModel.findOne({_id:id})
+
+        if (emp) {
+            return res.render("admin/applySelectEdit", {
+                data:emp
+            })
+        }
+    }
+    catch (error) {
+        console.log(error);
+    }
+}
+
+
+// Update Apply Selected Employee
+exports.ApplyUpdateSelectedEMP = async (req,res)=>{
+    try {
+        const id = req.params.id
+        const {name,email,phone,apply_for} = req.body
+
+        const emp = await UserModel.findOne({_id:id})
+
+        if (emp) {
+            emp.name=name,
+            emp.email=email,
+            emp.phone=phone,
+            emp.apply_for=apply_for
+            
+            if (req.file) {
+                emp.image = req.file.path
+            }
+
+            await emp.save()
+            req.flash("message",`${emp.name} Updated Successfully`)
+            return res.redirect("/admin/select")
+        } else {
+            req.flash("error","Check the values! Before Update")
+            return res.redirect("/admin/editselectedemp")
+        }
+    }
+    catch (error) {
+        console.log(error);
+    }
+}
+
 
 // Selected Apply Page
 exports.ApplySelectPage = async (req, res) => {
